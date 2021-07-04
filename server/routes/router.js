@@ -8,8 +8,35 @@ const service = require('../controller/services');
 const clinicData = require('../controller/clinicData')
 const gallery = require('../controller/gallery');
 const blog = require('../controller/blogs');
+const fs = require('fs');
+const multer = require('multer');
+
+/**
+ * Multer Handling 
+ */
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const dir = "images/"
+    fs.exists(dir, exist => {
+    if (!exist) {
+      return fs.mkdir(dir, error => cb(error, dir))
+    }
+    return cb(null, dir)
+  })
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname)
+  }
+}); 
+const upload = multer({ storage });
+/**
+ * END
+ */
 
 
+/**
+ * Routes Handling
+ */
 
 route.get('/',(req,res)=>{
     res.send("API's are ready");
@@ -24,7 +51,7 @@ route.post('/api/updateAppointment/:id', appointment.update);
 route.delete('/api/deleteAppointment/:id', appointment.delete);
 
 //API Slider Images
-route.post('/api/addSliderImage', slider.create);
+route.post('/api/addSliderImage',upload.single('imgUrl'), slider.create);
 route.get('/api/getSliderImage', slider.find);
 route.get('/api/getSliderImage/:id', slider.find);
 route.delete('/api/deleteSliderImage/:id', slider.delete);
@@ -56,14 +83,14 @@ route.get('/api/getClinicData/:id', clinicData.find);
 route.post('/api/updateClinicData/:id', clinicData.update);
 
 //gallery
-route.post('/api/addGalleryImage', gallery.create);
+route.post('/api/addGalleryImage',upload.single('imgUrl'), gallery.create);
 route.get('/api/getGalleryImage', gallery.find);
 route.get('/api/getGalleryImage/:id', gallery.find);
 route.delete('/api/deleteGalleryImage/:id', gallery.delete);
 
 
 //Blog
-route.post('/api/addBlog', blog.create);
+route.post('/api/addBlog',upload.single('imageUrl'), blog.create);
 route.get('/api/getBlog', blog.find);
 route.get('/api/getBlog/:id', blog.find);
 route.post('/api/updateBlog/:id', blog.update);

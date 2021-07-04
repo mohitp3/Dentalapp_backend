@@ -9,7 +9,7 @@ exports.create = (req, res) => {
   
     // new image add
     const blogs = new Blogs({
-      imgUrl: req.body.imgUrl,
+      imageUrl: req.file.path,
       description: req.body.description,
       title : req.body.title
 

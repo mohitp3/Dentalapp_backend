@@ -1,5 +1,6 @@
 var slider = require("../modal/slider");
 
+
 exports.create = (req, res) => {
   // validate request
   if (!req.body) {
@@ -9,7 +10,7 @@ exports.create = (req, res) => {
 
   // new image add
   const sliderData = new slider({
-    imgUrl: req.body.imgUrl,
+    imgUrl: req.file.path,
   });
   // res.send(req.body);
   // save in the database

@@ -9,7 +9,7 @@ exports.create = (req, res) => {
   
     // new image add
     const gallery = new Gallery({
-      imgUrl: req.body.imgUrl,
+      imgUrl: req.file.path,
       category: req.body.category,
       title : req.body.title
 

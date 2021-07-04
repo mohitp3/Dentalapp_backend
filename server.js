@@ -16,6 +16,8 @@ connectDB();
 // app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//allow images to be accesible Publicly 
+app.use('/images',express.static('images'))
 
 //load routes 
 app.use('/', require('./server/routes/router'))
