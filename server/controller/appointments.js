@@ -11,7 +11,7 @@ exports.create = (req,res)=>{
     // new appointment
     const appointment = new Appointment({
         email : req.body.email,
-        // appointmentDate: req.body.appointmentDate,
+        appointmentDate: req.body.appointmentDate,
         message : req.body.message,
         name : req.body.name
     })
