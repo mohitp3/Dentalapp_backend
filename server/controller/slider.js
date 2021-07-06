@@ -7,12 +7,10 @@ exports.create = (req, res) => {
     res.status(400).send({ message: "Content can not be emtpy!" });
     return;
   }
-
   // new image add
   const sliderData = new slider({
     imgUrl: req.file.path,
   });
-  // res.send(req.body);
   // save in the database
   sliderData
     .save(sliderData)
