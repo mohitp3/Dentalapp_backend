@@ -74,7 +74,7 @@ exports.find = (req, res) => {
       return res.status(400).send({ message: "Provide ID to update" });
     }
     const id = req.params.id;
-    ClinicData.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    ClinicData.findByIdAndUpdate(id, req.body, { useFindAndModify: false,new:true })
       .then((data) => {
         if (!data) {
           res.status(404).send({

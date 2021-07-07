@@ -74,7 +74,7 @@ exports.update = (req, res) => {
       return res.status(400).send({ message: "Provide ID to update" });
     }
     const id = req.params.id;
-    Blogs.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    Blogs.findByIdAndUpdate(id, req.body, { useFindAndModify: false,new:true })
       .then((data) => {
         if (!data) {
           res.status(404).send({

@@ -72,7 +72,7 @@ exports.update = (req, res)=>{
     }
     const id = req.params.id;
     Appointment
-    .findByIdAndUpdate(id, req.body, { useFindAndModify: false})
+    .findByIdAndUpdate(id, req.body, { useFindAndModify: false,new:true })
         .then(data => {
             if(!data){
                 res.status(404).send({ message : `Cannot Update appointment with ${id}. Maybe appointment not found!`})
