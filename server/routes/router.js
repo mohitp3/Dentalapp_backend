@@ -80,6 +80,7 @@ route.delete('/api/deleteService/:id', service.delete);
 //clinic Data
 route.post('/api/addClinicData', clinicData.create);
 route.get('/api/getClinicData/:id', clinicData.find);
+route.get('/api/getClinicData/', clinicData.find);
 route.post('/api/updateClinicData/:id', clinicData.update);
 
 //gallery
