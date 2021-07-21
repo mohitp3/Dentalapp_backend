@@ -1,5 +1,6 @@
 const express = require('express');
 const route = express.Router();
+const register = require('../controller/register');
 const appointment = require('../controller/appointments');
 const slider = require('../controller/slider');
 const aboutInfo = require('../controller/aboutInfo');
@@ -8,6 +9,7 @@ const service = require('../controller/services');
 const clinicData = require('../controller/clinicData')
 const gallery = require('../controller/gallery');
 const blog = require('../controller/blogs');
+const verifyToken = require('../utils/tokenValidation')
 const fs = require('fs');
 const multer = require('multer');
 
@@ -42,6 +44,12 @@ route.get('/',(req,res)=>{
     res.send("API's are ready");
 
 });
+
+//login/register
+route.post('/api/login', register.login);
+route.post('/api/register', register.registeruser);
+
+
 
 // API Appointments
 route.post('/api/addAppointment', appointment.create);
